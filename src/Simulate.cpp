@@ -6,6 +6,7 @@
 #include <string>
 #include <map>
 #include <ctime>
+//GSL - GNU Scientific Library
 #include <gsl/gsl_math.h>
 #include <gsl/gsl_rng.h>
 #include <gsl/gsl_randist.h>
@@ -45,13 +46,13 @@ static const int total_no_of_hbplanets = int(size_of_galaxy*habp_den);
 std::ofstream output0 ("/Users/David/Documents/code/C++/ColonisingTheGalaxy/All habitable planets.xls");
 
 // Coords of colonised planets
-ofstream output1 ("/Users/David/Documents/code/C++/ColonisingTheGalaxy/Coordinates of colonised planets.xls");
+std::ofstream output1 ("/Users/David/Documents/code/C++/ColonisingTheGalaxy/Coordinates of colonised planets.xls");
 
 // open and add results (Note: comment the header row for sucessive runs)
-ofstream output2 ("/Users/David/Documents/code/C++/ColonisingTheGalaxy/r=1200.txt");
+std::ofstream output2 ("/Users/David/Documents/code/C++/ColonisingTheGalaxy/r=1200.txt");
 
 // Distances between planets
-ofstream output3 ("/Users/David/Documents/code/C++/ColonisingTheGalaxy/Nearest HbPlanet Distances.xls");
+std::ofstream output3 ("/Users/David/Documents/code/C++/ColonisingTheGalaxy/Nearest HbPlanet Distances.xls");
 
 
 double rand_coord(const double& length) {
@@ -61,10 +62,10 @@ double rand_coord(const double& length) {
 }
 
 //Generate planet randomly in the Galaxy
-vector<planet> generate()	{
+std::vector<planet> generate()	{
     
     // set up the container of habitable planets within the galaxy
-    vector<planet> galaxy;
+	std::vector<planet> galaxy;
     
     for (int i = 0; i < total_no_of_hbplanets; i++)
     {
@@ -88,13 +89,13 @@ vector<planet> generate()	{
     return galaxy;
 }
 
-void record(vector<planet>& galaxy, int index, double t)		// Record time for development to complete, NB it doesn't change develop boolean since not developed yet
+void record(std::vector<planet>& galaxy, int index, double t)		// Record time for development to complete, NB it doesn't change develop boolean since not developed yet
 {
     galaxy[index].set_t(t);				// store time for development of the civilisation before it can start colonising
     galaxy[index].print(output1);		// record on file
 }
 
-void start(vector<planet>& galaxy, int& colon, list<int>& colonised_indices)	// default start at random position
+void start(std::vector<planet>& galaxy, int& colon, list<int>& colonised_indices)	// default start at random position
 {
     
     int start_pos = int(gsl_rng_uniform(r)*total_no_of_hbplanets);	// pick a random planet within the galaxy to start colonisation
@@ -116,7 +117,7 @@ void start(vector<planet>& galaxy, int& colon, list<int>& colonised_indices)	// 
 //	galaxy[n].print();
 //}
 
-void colonise(vector<planet>& galaxy, planet& p, int& colon, int& no_of_retire, list<int>& colonised_indices)		// carry out colonisation algorithm for planet p (to colonise nearest planet from planet p)
+void colonise(vector<planet>& galaxy, planet& p, int& colon, int& no_of_retire, list<int>& colonised_indices)	// carry out colonisation algorithm for planet p (to colonise nearest planet from planet p)
 {
     // create a spaceship by dynamic allocation
     spaceship* sp = new spaceship(v, safe_duration);
@@ -155,7 +156,7 @@ void colonise(vector<planet>& galaxy, planet& p, int& colon, int& no_of_retire, 
     
     //search from the vector of nearby planet for subsequent search
     else {
-        for(map<int, double>::iterator iter = p.nearby_planets.begin(); iter != p.nearby_planets.end(); iter++) {
+        for(std::map<int, double>::iterator iter = p.nearby_planets.begin(); iter != p.nearby_planets.end(); iter++) {
             if(galaxy[iter->first].get_t() == 0 && iter->second < shortest_dist) {
                 found = true;
                 nearest = iter->first;
@@ -189,14 +190,14 @@ void colonise(vector<planet>& galaxy, planet& p, int& colon, int& no_of_retire, 
 void interstellar_travel()
 {
     char type;
-    cout << "Please select Propulsion and Life support method:" << endl;
-    cout << "A for Fusion World ship" << endl;
-    cout << "B for Antimatter annihilation World ship" << endl;
-    cout << "C for Fusion Sleepers' ship" << endl;
-    cout << "D for Antimatter annihilation Sleepers' ship"<< endl;
-    cout << "E for Fusion Embryo ship" << endl;
-    cout << "F for Antimatter annihilation Embryo ship" << endl;
-    cout << "G for Laser-pushed lightsail Embryo ship" << endl;
+    std::cout << "Please select Propulsion and Life support method:" << std::endl;
+    std::cout << "A for Fusion World ship" << std::endl;
+    std::cout << "B for Antimatter annihilation World ship" << std::endl;
+    std::cout << "C for Fusion Sleepers' ship" << std::endl;
+    std::cout << "D for Antimatter annihilation Sleepers' ship"<< std::endl;
+    std::cout << "E for Fusion Embryo ship" << std::endl;
+    std::cout << "F for Antimatter annihilation Embryo ship" << std::endl;
+    std::cout << "G for Laser-pushed lightsail Embryo ship" << std::endl;
     std::cin >> type;
     switch (type)
     {
@@ -263,7 +264,7 @@ void print_info()
 	std::cout << "Size of galaxy : " << size_of_galaxy << " cubic light years" << std::endl;
 	std::cout << "Number of habitable planets : " << total_no_of_hbplanets << std::endl << std::endl;
     //interstellar_travel();
-    //cout << "(Constant) velocity of : " << v << "c | Safe duration: " << safe_duration << "years | Safe distance: "<< v*safe_duration << "ly" <<endl;
+    //std::cout << "(Constant) velocity of : " << v << "c | Safe duration: " << safe_duration << "years | Safe distance: "<< v*safe_duration << "ly" <<std::endl;
     
     output2 << "Size of galaxy" << '\t' << "v" << '\t' << "Safe duration" << '\t' << "P_f" << '\t' << "Time" << '\t' << "No. of hp" << '\t' << "No. of cp"  << '\t' << "Run_t" << std::endl;
     output3 << "Distances between hbplanets" << endl;
@@ -271,14 +272,14 @@ void print_info()
 
 void print_results(int colon)	// print results on screen
 {
-    cout << "Time elapsed : " << global_t << " years" << endl
+	std::cout << "Time elapsed : " << global_t << " years" << endl
     << "No. of colonised planets : " << colon << endl;
 }
 
 
 // record all the habitable planets into file
 void write_planets(const vector<planet>& galaxy) {
-    for (vector<planet>::const_iterator it = galaxy.begin(); it != galaxy.end(); it++)
+    for (std::vector<planet>::const_iterator it = galaxy.begin(); it != galaxy.end(); it++)
         it->print(output0);
 }
 
@@ -315,17 +316,17 @@ void simulation(vector<planet>& galaxy, int run)
     start(galaxy, colon, colonised_indices);		// Develop on a random planet
     
     // loop algorithm for colonisation
-    cout << endl << "*****Colonising*****" << endl;
+    std::cout << endl << "*****Colonising*****" << std::endl;
     
     // Stop simulation if all colonised planets have retired or all planets in the galaxy are colonised
     while ((no_of_retire < colon)&&(colon < total_no_of_hbplanets))
     {
-        typedef list<int>::const_iterator con_iter;
-        typedef list<int>::iterator iter;
+        typedef std::list<int>::const_iterator con_iter;
+        typedef std::list<int>::iterator iter;
         
         for (con_iter it = colonised_indices.begin(); it != colonised_indices.end(); it++) {
             
-            vector<planet>::iterator mother_planet = galaxy.begin()+(*it); //*it exceeded the galaxy vector??
+        	std::vector<planet>::iterator mother_planet = galaxy.begin()+(*it); //*it exceeded the galaxy vector??
             
             // Check if the planet is developed
             if (mother_planet->get_dev())	{
@@ -358,8 +359,8 @@ void simulation(vector<planet>& galaxy, int run)
     }
     
     // generate results
-    cout << endl << endl << "*****Results*****" << endl;
-    cout << "Time taken to run the program : " << clock()/CLOCKS_PER_SEC << " seconds" << endl;
+    std::cout << std::endl << std::endl << "*****Results*****" << std::endl;
+    std::cout << "Time taken to run the program : " << clock()/CLOCKS_PER_SEC << " seconds" << std::endl;
     print_results(colon);	// on screen
     write_results(colon);	// on file
     

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+// GSL - GNU Scientific Library
 #include <gsl/gsl_math.h>
 #include <gsl/gsl_rng.h>
 #include <gsl/gsl_randist.h>
@@ -29,7 +30,7 @@ int main() {
     std::cout << "first value = " << gsl_rng_get(r) << "\n" << std::endl;
     
     // Initialize the galaxy with randomly distributed habitable planets
-	vector<planet> galaxy = generate();
+    std::vector<planet> galaxy = generate();
     
     // record all the habitable planets into file
 	write_planets(galaxy);

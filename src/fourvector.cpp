@@ -58,7 +58,7 @@ void fourvector::print() const {
 
 // Method to print out spatial coordinates onto files
 void fourvector::print(std::ofstream& fout) const {
-  fout << x << '\t' << y << '\t' << z << std::endl;
+	fout << x << '\t' << y << '\t' << z << std::endl;
 }
 
 // Method to modify the spatial coords
