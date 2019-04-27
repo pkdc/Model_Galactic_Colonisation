@@ -1,5 +1,3 @@
-//#ifndef __Model_Galactic_Colonisation__Simulate__
-//#define __Model_Galactic_Colonisation__Simulate__
 #pragma once
 
 #include <stdio.h>
@@ -18,4 +16,3 @@ void colonise(std::vector<planet>&, planet&, int&, int&);
 void simulation(std::vector<planet>&, int);
 void tiktok(double&, const int, const int);
 
-#endif

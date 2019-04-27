@@ -17,7 +17,7 @@ bool planet::get_dev() const{ return developed;}
 
 bool planet::get_ret() const{ return retired;}
 
-int planet::get_col_count() const { return col_count;};
+int planet::get_col_count() const { return col_count;}
 
 // Modifiers
 void planet::set_ret(bool ret) { retired = ret;}

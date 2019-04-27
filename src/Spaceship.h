@@ -5,13 +5,9 @@
 //  Created by David Choy on 06/01/2015.
 //  Copyright (c) 2015 pkdc. All rights reserved.
 //
-
-//#ifndef __Model_Galactic_Colonisation__Spaceship__
-//#define __Model_Galactic_Colonisation__Spaceship__
 #pragma once
 
 #include <stdio.h>
-
 
 class spaceship {
     
@@ -45,5 +41,3 @@ private:
     double safe_dur;
     
 };
-
-#endif /* defined(__Model_Galactic_Colonisation__Spaceship__) */

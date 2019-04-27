@@ -1,5 +1,3 @@
-//#ifndef FOURVECTOR_H
-//#define FOURVECTOR_H
 #pragma once
 
 #include <fstream>
@@ -52,6 +50,3 @@ private:
   double x, y, z, t;
 
 };
-
-
-#endif // FOURVECTOR_H

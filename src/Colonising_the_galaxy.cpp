@@ -1,12 +1,11 @@
 #include <iostream>
-#include "Planet.h"
-#include "Simulate.h"
 #include <vector>
 #include <gsl/gsl_math.h>
 #include <gsl/gsl_rng.h>
 #include <gsl/gsl_randist.h>
+#include "Planet.h"
+#include "Simulate.h"
 
-using namespace std;
 
 // global generator
 gsl_rng* r;
@@ -25,9 +24,9 @@ int main() {
     // Create an instance of a rng of type T
     r = gsl_rng_alloc(T);
     
-    cout << "generator type : " << gsl_rng_name(r) << endl;
-    cout << "seed = " << gsl_rng_default_seed << endl;
-    cout << "first value = " << gsl_rng_get(r) << "\n" << endl;
+    std::cout << "generator type : " << gsl_rng_name(r) << std::endl;
+    std::cout << "seed = " << gsl_rng_default_seed << std::endl;
+    std::cout << "first value = " << gsl_rng_get(r) << "\n" << std::endl;
     
     // Initialize the galaxy with randomly distributed habitable planets
 	vector<planet> galaxy = generate();

@@ -42,7 +42,7 @@ static const int total_no_of_hbplanets = int(size_of_galaxy*habp_den);
 
 // Output streams
 // All habitable planets
-ofstream output0 ("/Users/David/Documents/code/C++/ColonisingTheGalaxy/All habitable planets.xls");
+std::ofstream output0 ("/Users/David/Documents/code/C++/ColonisingTheGalaxy/All habitable planets.xls");
 
 // Coords of colonised planets
 ofstream output1 ("/Users/David/Documents/code/C++/ColonisingTheGalaxy/Coordinates of colonised planets.xls");
@@ -260,12 +260,12 @@ void interstellar_travel()
 
 void print_info()
 {
-    cout << "Size of galaxy : " << size_of_galaxy << " cubic light years" << endl;
-    cout << "Number of habitable planets : " << total_no_of_hbplanets << endl << endl;
+	std::cout << "Size of galaxy : " << size_of_galaxy << " cubic light years" << std::endl;
+	std::cout << "Number of habitable planets : " << total_no_of_hbplanets << std::endl << std::endl;
     //interstellar_travel();
     //cout << "(Constant) velocity of : " << v << "c | Safe duration: " << safe_duration << "years | Safe distance: "<< v*safe_duration << "ly" <<endl;
     
-    output2 << "Size of galaxy" << '\t' << "v" << '\t' << "Safe duration" << '\t' << "P_f" << '\t' << "Time" << '\t' << "No. of hp" << '\t' << "No. of cp"  << '\t' << "Run_t" << endl;
+    output2 << "Size of galaxy" << '\t' << "v" << '\t' << "Safe duration" << '\t' << "P_f" << '\t' << "Time" << '\t' << "No. of hp" << '\t' << "No. of cp"  << '\t' << "Run_t" << std::endl;
     output3 << "Distances between hbplanets" << endl;
 }
 
@@ -284,7 +284,7 @@ void write_planets(const vector<planet>& galaxy) {
 
 void write_results(int colon)
 {
-    output2 << size_of_galaxy /*<< '\t' << v << '\t' << safe_duration */<< '\t' << global_t <<'\t' << total_no_of_hbplanets << '\t' << colon << '\t' << clock()/CLOCKS_PER_SEC << endl;
+    output2 << size_of_galaxy /*<< '\t' << v << '\t' << safe_duration */<< '\t' << global_t <<'\t' << total_no_of_hbplanets << '\t' << colon << '\t' << clock()/CLOCKS_PER_SEC << std::endl;
 }
 
 void reset(vector<planet>& galaxy, int& colon, int& no_of_retire, int& run)	// reset the parameters for colonisation beginning on another planet

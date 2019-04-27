@@ -1,5 +1,3 @@
-//#ifndef PLANET_H	// Prevents the class from being re-defined
-//#define PLANET_H
 #pragma once
 
 #include "fourvector.h"
@@ -48,5 +46,3 @@ private:
     int col_count;
 
 };
-
-#endif // PLANET_H

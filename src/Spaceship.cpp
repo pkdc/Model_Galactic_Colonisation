@@ -5,9 +5,6 @@
 //  Created by David Choy on 06/01/2015.
 //  Copyright (c) 2015 pkdc. All rights reserved.
 //
-
-//#include "Spaceship.h"
-//#include "fourvector.h"
 #pragma once
 
 // default Constructor

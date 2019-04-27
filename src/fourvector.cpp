@@ -31,7 +31,7 @@ double fourvector::get_t() const {
 
 // Access method for square of spatial coordinates
 double fourvector::square() const{
-  return (x*x)+(y*y)+(z*z);	// suming the square of each coordinate
+  return (x*x)+(y*y)+(z*z);	// summing the square of each coordinate
 }
 
 // Method to modify coordinates
