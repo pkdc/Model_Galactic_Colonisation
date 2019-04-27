@@ -1,0 +1,3 @@
+Size of galaxy	v	Safe duration	P_f	Time	No. of hp	No. of cp	Run_t
+2.31567e+08	93260	21859	21859	12
+93260
